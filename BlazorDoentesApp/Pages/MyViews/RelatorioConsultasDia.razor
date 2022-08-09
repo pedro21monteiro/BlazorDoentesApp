@@ -1,0 +1,63 @@
+﻿@page "/RelatorioConsultasPorDia"
+@using Models.CustomModels
+@using BlazorDoentesApp.Services;
+@using Models
+@using Models.CustomModels
+@inject IConsultasService consultaService;
+@inject IJSRuntime JSRuntime;
+
+
+<PageTitle>ConsultasPorDia</PageTitle>
+
+<h5>Consultas por dia</h5>
+<div class="container">
+<table class="table table-striped table-bordered bg-light">
+    <thead>
+        <tr>
+            <th>Dia</th>
+            <th>Nº de consultas</th>
+
+        </tr>
+    </thead>
+    <tbody>
+      
+        
+        @foreach(ConsultasDia cd in listconsultasDias.OrderBy(c => c.Dia))
+        {          
+                
+        <tr>
+                <td>
+                    @cd.Dia.ToShortDateString()
+                </td>
+                <td>
+                    @cd.NrConsultas.ToString()
+                </td>
+        </tr>
+                                      
+        }
+         
+    </tbody>
+</table>
+ </div>   
+
+@code{
+    
+    private List<ConsultasDia> listconsultasDias = new List<ConsultasDia>();
+    
+
+    private async Task GetConsultasDia()
+    {
+       listconsultasDias = await consultaService.GetConsultasDia();
+    }
+  
+    protected override async Task OnInitializedAsync()
+    {
+        await GetConsultasDia();
+    }
+   
+    private async Task Alert(String Message)
+    {
+        await JSRuntime.InvokeAsync<object>("Alert", Message);
+    }
+
+}

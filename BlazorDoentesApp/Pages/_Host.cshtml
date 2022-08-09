@@ -1,0 +1,11 @@
+﻿@page "/"
+@namespace BlazorDoentesApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+<head>
+    <script src="~/script.js"></script>
+</head>
