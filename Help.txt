@@ -1,0 +1,5 @@
+Antes de Correr o projeto:
+
+1- Clicar com o botao do lado direito no nome do projeto(BlazorDoentesApp) e ir as propriedades
+2 - Selecionar onde diz: varios projetos de inicialização
+3 - Meter Iniciar no ApiDoentes e no BlazorDoentesApp e depois clicar OK
